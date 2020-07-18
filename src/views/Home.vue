@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BoxBreathing  />
+    <BoxBreathing />
   </div>
 </template>
 
