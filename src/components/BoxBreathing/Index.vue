@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import "./style.scss";
+import './style.scss'
 export default {
-  name: "BoxBreathing",
+  name: 'BoxBreathing',
   props: {
     msg: String
   }
-};
+}
 </script>

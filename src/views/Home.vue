@@ -6,12 +6,12 @@
 
 <script>
 // @ is an alias to /src
-import BoxBreathing from "@/components/BoxBreathing/Index.vue";
+import BoxBreathing from '@/components/BoxBreathing/Index.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     BoxBreathing
   }
-};
+}
 </script>

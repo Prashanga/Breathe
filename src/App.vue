@@ -9,6 +9,6 @@
 </template>
 
 <script>
-import "./style.scss";
-export default {};
+import './style.scss'
+export default {}
 </script>
