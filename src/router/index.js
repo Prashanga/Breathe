@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import BreathingExercise from '../components/BreathingExercise/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: BreathingExercise
   },
   {
     path: '/about',

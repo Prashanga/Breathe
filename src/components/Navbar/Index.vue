@@ -1,3 +1,33 @@
+<script>
+import './style.scss'
+
+export default {
+  name: 'Navbar',
+  data: () => {
+    return {
+      drawer: false,
+
+      links: [
+        { text: 'Home', route: '/' },
+        { text: 'About', route: '/about' }
+      ]
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.xsOnly
+    },
+    appBarColor() {
+      return this.isMobile ? 'primaryBlue' : 'primaryBlack'
+    },
+    toolbarTitleColor() {
+      return this.isMobile ? 'toolbar-title-mobile' : 'toolbar-title-desktop'
+    }
+  },
+  methods: {}
+}
+</script>
+
 <template>
   <nav>
     <v-app-bar app absolute :color="appBarColor" dark elevate-on-scroll>
@@ -73,33 +103,3 @@
     </v-navigation-drawer>
   </nav>
 </template>
-
-<script>
-import './style.scss'
-
-export default {
-  name: 'Navbar',
-  data: () => {
-    return {
-      drawer: false,
-
-      links: [
-        { text: 'Home', route: '/' },
-        { text: 'About', route: '#' }
-      ]
-    }
-  },
-  computed: {
-    isMobile() {
-      return this.$vuetify.breakpoint.xsOnly
-    },
-    appBarColor() {
-      return this.isMobile ? 'primaryBlue' : 'primaryBlack'
-    },
-    toolbarTitleColor() {
-      return this.isMobile ? 'toolbar-title-mobile' : 'toolbar-title-desktop'
-    }
-  },
-  methods: {}
-}
-</script>
