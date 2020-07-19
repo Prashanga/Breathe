@@ -1,14 +1,19 @@
 <template>
-  <div>
-    <v-app-bar absolute color="primary" dark elevate-on-scroll>
+  <nav>
+    <v-app-bar app absolute :color="appBarColor" dark elevate-on-scroll>
       <v-app-bar-nav-icon
         @click="drawer = true"
-        v-if="$vuetify.breakpoint.xsOnly"
+        v-if="isMobile"
+        color="primaryBlack"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title>Title</v-toolbar-title>
-
+      <v-spacer v-if="isMobile"></v-spacer>
+      <v-toolbar-title v-bind:class="toolbarTitleColor"
+        >Title Breathing</v-toolbar-title
+      >
+      <v-spacer v-if="isMobile"></v-spacer>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-if="!$vuetify.breakpoint.xsOnly">
+
+      <v-toolbar-items v-if="!isMobile">
         <v-btn
           text
           v-for="link in links"
@@ -21,7 +26,7 @@
         </v-btn>
       </v-toolbar-items>
 
-      <v-btn v-if="!$vuetify.breakpoint.xsOnly" icon>
+      <v-btn class="mr-12" v-if="!isMobile" icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
     </v-app-bar>
@@ -30,7 +35,7 @@
       absolute
       app
       v-model="drawer"
-      color="primary"
+      color="primaryBlack"
       dark
       temporary
       deep-purple
@@ -66,7 +71,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -77,13 +82,24 @@ export default {
   data: () => {
     return {
       drawer: false,
+
       links: [
         { text: 'Home', route: '/' },
         { text: 'About', route: '#' }
       ]
     }
   },
-  computed: {},
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.xsOnly
+    },
+    appBarColor() {
+      return this.isMobile ? 'primaryBlue' : 'primaryBlack'
+    },
+    toolbarTitleColor() {
+      return this.isMobile ? 'toolbar-title-mobile' : 'toolbar-title-desktop'
+    }
+  },
   methods: {}
 }
 </script>
