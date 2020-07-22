@@ -23,6 +23,18 @@ export default {
     },
     numberOfRepetition() {
       return this.breathingTechnique.numberOfRepetition
+    },
+    playerCol: function() {
+      return {
+        mobileColumnPlayer: this.$vuetify.breakpoint.smAndDown,
+        desktopColumnPlayer: this.$vuetify.breakpoint.mdAndUp
+      }
+    },
+    controlsCol: function() {
+      return {
+        mobileColumnControls: this.$vuetify.breakpoint.smAndDown,
+        desktopColumnControls: this.$vuetify.breakpoint.mdAndUp
+      }
     }
   },
   methods: {
@@ -36,22 +48,20 @@ export default {
       }
     },
     breathingTimer(that) {
-      // const timeAtBeginning = new Date().getSeconds()
       let timeAtStart = new Date()
       console.log(timeAtStart)
-      let oneRoundTime = 10 // this.totalPlayingTime
+      let oneRoundTime = 8 // this.totalPlayingTime
 
-      // eslint-disable-next-line no-unused-vars
       let player = setInterval(function() {
         let timeNow = new Date()
         const timeDifference = (timeNow - timeAtStart) / 1000
         console.log(timeDifference)
 
         if (timeDifference >= oneRoundTime) {
-          that.nowPlaying = ''
           that.count = that.count - 1
 
           if (that.count <= 0) {
+            that.nowPlaying = ''
             that.clearAllTimers()
           } else {
             clearInterval(player)
@@ -96,15 +106,40 @@ export default {
 </script>
 
 <template>
-  <div class="hello">
-    <h1>Hello, Breathing Exercise Here</h1>
-    <p v-if="!timer.length">{{ timer }}</p>
-    <p>{{ nowPlaying }}</p>
-    <button v-if="!playing" type="button" color="blue" @click="startPlaying">
-      Start
-    </button>
-    <button v-if="playing" type="button" color="blue" @click="clearAllTimers">
-      Stop
-    </button>
-  </div>
+  <v-container
+    py-0
+    fluid
+    style="height:100%; width:100%; background-color:blue;"
+  >
+    <v-row style="height:100%;">
+      <!----------- Player  ----------->
+      <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
+        <h1>Hello, Breathing Exercise Here</h1>
+        <p v-if="!timer.length">{{ timer }}</p>
+        <p>{{ nowPlaying }}</p>
+        <button
+          v-if="!playing"
+          type="button"
+          color="blue"
+          @click="startPlaying"
+        >
+          Start
+        </button>
+        <button
+          v-if="playing"
+          type="button"
+          color="blue"
+          @click="clearAllTimers"
+        >
+          Stop
+        </button>
+      </v-col>
+
+      <!----------- Controls  ----------->
+
+      <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
+        <p>Hello player controls here</p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>

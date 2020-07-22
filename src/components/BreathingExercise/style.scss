@@ -1,3 +1,27 @@
 .hello {
-    color: red;
+  color: red;
+}
+
+.mobileColumnPlayer {
+  height: 50% !important;
+  background-color: #3aafa9;
+  color: pink;
+}
+
+.mobileColumnControls {
+  height: 50% !important;
+  background-color: #fff;
+  color: red;
+}
+
+.desktopColumnPlayer {
+  height: 100% !important;
+  background-color: #3aafa9;
+  color: rgb(215, 250, 16);
+}
+
+.desktopColumnControls {
+  height: 100% !important;
+  background-color: #3aafa9;
+  color: rgb(215, 250, 16);
 }
