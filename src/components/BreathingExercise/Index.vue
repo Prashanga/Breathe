@@ -164,8 +164,10 @@ export default {
               </v-btn>
             </v-row>
 
-            <v-btn small right icon absolute fab large color="primaryBlack"
-              ><v-icon>mdi-information</v-icon></v-btn
+            <v-btn small right absolute fab :ripple="false" color="primaryBlack"
+              ><v-icon class="info-icon" medium color="primaryWhite"
+                >mdi-information-variant</v-icon
+              ></v-btn
             >
           </v-col>
         </v-row>

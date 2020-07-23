@@ -8,10 +8,8 @@
 .fab-icons {
   color: white !important;
 }
-
-.fab-icons hover::before {
+.fab-icons::after {
   background-color: transparent !important;
-  background: transparent !important;
 }
 
 .mobileColumnPlayer {
