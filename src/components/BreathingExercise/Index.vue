@@ -136,6 +136,7 @@ export default {
               {{ nowPlaying }}
             </v-row>
           </v-col>
+
           <v-col cols="12">
             <v-row justify="center" align="center" class="my-o py-0">
               <v-btn
@@ -161,8 +162,11 @@ export default {
                   >mdi-pause</v-icon
                 >
               </v-btn>
-              <v-icon large>mdi-info</v-icon>
             </v-row>
+
+            <v-btn small right icon absolute fab large color="primaryBlack"
+              ><v-icon>mdi-information</v-icon></v-btn
+            >
           </v-col>
         </v-row>
       </v-col>
