@@ -1,11 +1,24 @@
-.hello {
-  color: red;
+.play-button {
+  position: absolute;
+  height: 62px !important;
+  width: 62px !important;
+  bottom: -31px;
+}
+
+.fab-icons {
+  color: white !important;
+}
+
+.fab-icons hover::before {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 .mobileColumnPlayer {
   height: 50% !important;
+  position: relative;
   background-color: #3aafa9;
-  color: pink;
+  color: #17252a;
 }
 
 .mobileColumnControls {
@@ -17,11 +30,20 @@
 .desktopColumnPlayer {
   height: 100% !important;
   background-color: #3aafa9;
-  color: rgb(215, 250, 16);
+  color: #17252a;
 }
 
 .desktopColumnControls {
   height: 100% !important;
   background-color: #3aafa9;
   color: rgb(215, 250, 16);
+}
+
+.breathing-circle {
+  height: 220px;
+  width: 220px;
+  background-color: white;
+  border-radius: 50%;
+  min-width: 100px;
+  min-height: 100px;
 }

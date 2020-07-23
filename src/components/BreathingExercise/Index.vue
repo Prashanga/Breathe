@@ -8,9 +8,10 @@ export default {
     return {
       breathingTechnique: breathingTechniques.boxBreathing,
       nowPlaying: '',
-      timer: '',
+      timerPlaying: false,
       playing: false,
-      count: null
+      count: null,
+      timer: ''
     }
   },
   computed: {
@@ -77,6 +78,7 @@ export default {
       }, 10)
     },
     countdownTimer() {
+      this.timerPlaying = true
       let that = this
       let startTimer = 4
       let timer = setInterval(function() {
@@ -85,6 +87,7 @@ export default {
         if (startTimer === 1) {
           clearInterval(timer)
           that.timer = ''
+          that.timerPlaying = false
         }
         startTimer--
       }, 1000)
@@ -114,31 +117,60 @@ export default {
     <v-row style="height:100%;">
       <!----------- Player  ----------->
       <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
-        <h1>Hello, Breathing Exercise Here</h1>
-        <p v-if="!timer.length">{{ timer }}</p>
-        <p>{{ nowPlaying }}</p>
-        <button
-          v-if="!playing"
-          type="button"
-          color="blue"
-          @click="startPlaying"
-        >
-          Start
-        </button>
-        <button
-          v-if="playing"
-          type="button"
-          color="blue"
-          @click="clearAllTimers"
-        >
-          Stop
-        </button>
+        <v-row justify="center" align="center">
+          <v-col cols="12" class="my-o py-0">
+            <v-row style="height:220px;" justify="center" align="center">
+              <div v-if="timerPlaying">
+                <p class="text-h3 mt-4">{{ timer }}</p>
+              </div>
+
+              <div
+                v-if="playing && nowPlaying.length"
+                class="breathing-circle"
+              ></div>
+            </v-row>
+          </v-col>
+
+          <v-col cols="12" class="mt-6 py-0">
+            <v-row justify="center" align="center" class="text-h4">
+              {{ nowPlaying }}
+            </v-row>
+          </v-col>
+          <v-col cols="12">
+            <v-row justify="center" align="center" class="my-o py-0">
+              <v-btn
+                fab
+                depressed
+                elevation="3"
+                color="primaryBlack"
+                class="play-button"
+                :ripple="false"
+              >
+                <v-icon
+                  @click="startPlaying"
+                  class="fab-icons"
+                  v-if="!playing"
+                  :ripple="false"
+                  >mdi-play</v-icon
+                >
+                <v-icon
+                  @click="clearAllTimers"
+                  v-if="playing"
+                  class="fab-icons"
+                  :ripple="false"
+                  >mdi-pause</v-icon
+                >
+              </v-btn>
+              <v-icon large>mdi-info</v-icon>
+            </v-row>
+          </v-col>
+        </v-row>
       </v-col>
 
       <!----------- Controls  ----------->
 
       <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
-        <p>Hello player controls here</p>
+        <!-- <p>Hello player controls here</p> -->
       </v-col>
     </v-row>
   </v-container>
