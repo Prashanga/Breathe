@@ -185,7 +185,24 @@ export default {
       <!----------- Controls  ----------->
 
       <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
-        <p>Hello player controls here</p>
+        <v-row class="pt-10" align="center" justify="start">
+          <!--           Left Column            -->
+          <v-col cols="6">
+            <p>Hello player controls here</p>
+          </v-col>
+
+          <!--       Right Column               -->
+          <v-col cols="6" class="pl-8">
+            <v-row justify="start" class="mb-2">
+              <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
+              Ratio
+            </v-row>
+            <v-row justify="start">
+              <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
+              Ratio
+            </v-row>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
