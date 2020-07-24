@@ -119,7 +119,7 @@ export default {
       <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
         <v-row justify="center" align="center">
           <v-col cols="12" class="my-o py-0">
-            <v-row style="height:220px;" justify="center" align="center">
+            <v-row class="circle-container-row" justify="center" align="center">
               <div v-if="timerPlaying">
                 <p class="text-h3 mt-4">{{ timer }}</p>
               </div>
@@ -132,7 +132,7 @@ export default {
           </v-col>
 
           <v-col cols="12" class="mt-6 py-0">
-            <v-row justify="center" align="center" class="text-h4">
+            <v-row justify="center" align="center" class="nowPlayingText">
               {{ nowPlaying }}
             </v-row>
           </v-col>
@@ -143,6 +143,8 @@ export default {
                 fab
                 depressed
                 elevation="3"
+                absolute
+                bottom
                 color="primaryBlack"
                 class="play-button"
                 :ripple="false"
@@ -164,7 +166,14 @@ export default {
               </v-btn>
             </v-row>
 
-            <v-btn small right absolute fab :ripple="false" color="primaryBlack"
+            <v-btn
+              small
+              right
+              absolute
+              bottom
+              fab
+              :ripple="false"
+              color="primaryBlack"
               ><v-icon class="info-icon" medium color="primaryWhite"
                 >mdi-information-variant</v-icon
               ></v-btn
@@ -176,7 +185,7 @@ export default {
       <!----------- Controls  ----------->
 
       <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
-        <!-- <p>Hello player controls here</p> -->
+        <p>Hello player controls here</p>
       </v-col>
     </v-row>
   </v-container>

@@ -1,9 +1,9 @@
-.play-button {
-  position: absolute;
-  height: 62px !important;
-  width: 62px !important;
-  bottom: -31px;
-}
+// .play-button {
+//   position: absolute;
+//   height: 62px !important;
+//   width: 62px !important;
+//   bottom: -31px;
+// }
 
 .fab-icons {
   color: white !important;
@@ -38,10 +38,17 @@
 }
 
 .breathing-circle {
-  height: 220px;
-  width: 220px;
+  height: 25vh;
+  width: 25vh;
   background-color: white;
   border-radius: 50%;
   min-width: 100px;
   min-height: 100px;
+}
+
+.nowPlayingText {
+  font-size: 2rem !important;
+}
+.circle-container-row {
+  height: 25vh !important;
 }
