@@ -11,7 +11,8 @@ export default {
       timerPlaying: false,
       playing: false,
       count: null,
-      timer: ''
+      timer: '',
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
     }
   },
   computed: {
@@ -185,7 +186,7 @@ export default {
       <!----------- Controls  ----------->
 
       <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
-        <v-row class="pt-10" align="center" justify="start">
+        <v-row class="pt-12" align="center" justify="start">
           <!--           Left Column            -->
           <v-col cols="6">
             <p>Hello player controls here</p>
@@ -201,6 +202,20 @@ export default {
               <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
               Ratio
             </v-row>
+          </v-col>
+        </v-row>
+        <v-row justify="center" class="mt-8">
+          <v-col cols="11">
+            <v-select
+              :items="items"
+              label="Choose One"
+              background-color="primaryBlack"
+              class="select-techniques"
+              item-color="primaryBlack"
+              dark
+              dense
+              solo
+            ></v-select>
           </v-col>
         </v-row>
       </v-col>
