@@ -34,19 +34,52 @@ export default {
         ) * 1000
       )
     },
+    inhaleTime() {
+      return this.breathCycle[0]
+    },
+    holdTime() {
+      return this.breathCycle[0] + this.breathCycle[1]
+    },
+    exhaleTime() {
+      return this.breathCycle[0] + this.breathCycle[1] + this.breathCycle[2]
+    },
+    sustainTime() {
+      return (
+        this.breathCycle[0] +
+        this.breathCycle[1] +
+        this.breathCycle[2] +
+        this.breathCycle[3]
+      )
+    },
+
     numberOfRepetition() {
       return this.breathingTechnique.numberOfRepetition
     },
-    playerCol: function() {
+    playerCol() {
       return {
         mobileColumnPlayer: this.$vuetify.breakpoint.smAndDown,
         desktopColumnPlayer: this.$vuetify.breakpoint.mdAndUp
       }
     },
-    controlsCol: function() {
+    controlsCol() {
       return {
         mobileColumnControls: this.$vuetify.breakpoint.smAndDown,
         desktopColumnControls: this.$vuetify.breakpoint.mdAndUp
+      }
+    },
+    inhaleCircleCSS() {
+      return {
+        '--time': `${this.breathCycle[0]}s`
+      }
+    },
+    exhaleCircleCSS() {
+      return {
+        '--time': `${this.breathCycle[2]}s`
+      }
+    },
+    sustainCircleCSS() {
+      return {
+        '--time': `${this.breathCycle[3]}s`
       }
     }
   },
@@ -69,15 +102,6 @@ export default {
       let timeAtStart = new Date()
       let that = this
       let oneRoundTime = this.totalPlayingTime / 1000
-      let inhaleTimer = this.breathCycle[0]
-      let holdTimer = this.breathCycle[0] + this.breathCycle[1]
-      let exhaleTimer =
-        this.breathCycle[0] + this.breathCycle[1] + this.breathCycle[2]
-      let sustainTimer =
-        this.breathCycle[0] +
-        this.breathCycle[1] +
-        this.breathCycle[2] +
-        this.breathCycle[3]
 
       let player = setInterval(function() {
         let timeNow = new Date()
@@ -93,19 +117,22 @@ export default {
             clearInterval(player)
             that.breathingTimer(that)
           }
-        } else if (timeDifference <= inhaleTimer) that.nowPlaying = 'Inhale'
+        } else if (timeDifference <= that.inhaleTime) that.nowPlaying = 'Inhale'
         else if (
           that.breathCycle[1] !== 0 &&
-          timeDifference > inhaleTimer &&
-          timeDifference <= holdTimer
+          timeDifference > that.inhaleTime &&
+          timeDifference <= that.holdTime
         )
           that.nowPlaying = 'Hold'
-        else if (timeDifference > holdTimer && timeDifference <= exhaleTimer)
+        else if (
+          timeDifference > that.holdTime &&
+          timeDifference <= that.exhaleTime
+        )
           that.nowPlaying = 'Exhale'
         else if (
           that.breathCycle[3] !== 0 &&
-          timeDifference > exhaleTimer &&
-          timeDifference <= sustainTimer
+          timeDifference > that.exhaleTime &&
+          timeDifference <= that.sustainTime
         )
           that.nowPlaying = 'Sustain'
       }, 10)
@@ -158,7 +185,17 @@ export default {
               </div>
 
               <div
-                v-if="playing && nowPlaying.length"
+                v-if="playing && nowPlaying === 'Inhale'"
+                :style="inhaleCircleCSS"
+                class="inhale-circle"
+              ></div>
+              <div
+                v-if="playing && nowPlaying === 'Exhale'"
+                :style="exhaleCircleCSS"
+                class="exhale-circle"
+              ></div>
+              <div
+                v-if="playing && nowPlaying === 'Hold'"
                 class="breathing-circle"
               ></div>
             </v-row>
@@ -244,6 +281,7 @@ export default {
             <v-select
               :items="items"
               :label="breathingTechnique.title"
+              hint="Select "
               @change="selectBreathingTechnique"
               background-color="primaryBlack"
               class="select-techniques"
@@ -258,3 +296,49 @@ export default {
     </v-row>
   </v-container>
 </template>
+
+<style>
+.breathing-circle {
+  height: 25vh;
+  width: 25vh;
+  background-color: white;
+  border-radius: 50%;
+}
+.inhale-circle {
+  height: 25vh;
+  width: 25vh;
+  background-color: white;
+  border-radius: 50%;
+  animation-name: inhaleCircle;
+  animation-duration: var(--time);
+}
+.exhale-circle {
+  height: 25vh;
+  width: 25vh;
+  background-color: white;
+  border-radius: 50%;
+  animation-name: exhaleCircle;
+  animation-duration: var(--time);
+}
+
+@keyframes inhaleCircle {
+  from {
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    width: 25vh;
+    height: 25vh;
+  }
+}
+@keyframes exhaleCircle {
+  from {
+    width: 25vh;
+    height: 25vh;
+  }
+  to {
+    width: 0px;
+    height: 0px;
+  }
+}
+</style>
