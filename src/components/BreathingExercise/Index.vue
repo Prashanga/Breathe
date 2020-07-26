@@ -21,6 +21,9 @@ export default {
         tech => tech.title === this.currentTechnique
       )
     },
+    breathCycle() {
+      return this.breathingTechnique.breathCycle
+    },
     items() {
       return this.breathingTechniques.map(tech => tech.title)
     },
@@ -49,6 +52,7 @@ export default {
   },
   methods: {
     selectBreathingTechnique(title) {
+      this.clearAllTimers()
       this.currentTechnique = title
       this.$store.dispatch('setTitle', title)
     },
@@ -61,16 +65,24 @@ export default {
         window.clearTimeout(id) // will do nothing if no timeout with id is present
       }
     },
-    breathingTimer(that) {
+    breathingTimer() {
       let timeAtStart = new Date()
-      console.log(timeAtStart)
-      let oneRoundTime = 8 // this.totalPlayingTime
+      let that = this
+      let oneRoundTime = this.totalPlayingTime / 1000
+      let inhaleTimer = this.breathCycle[0]
+      let holdTimer = this.breathCycle[0] + this.breathCycle[1]
+      let exhaleTimer =
+        this.breathCycle[0] + this.breathCycle[1] + this.breathCycle[2]
+      let sustainTimer =
+        this.breathCycle[0] +
+        this.breathCycle[1] +
+        this.breathCycle[2] +
+        this.breathCycle[3]
 
       let player = setInterval(function() {
         let timeNow = new Date()
         const timeDifference = (timeNow - timeAtStart) / 1000
         console.log(timeDifference)
-
         if (timeDifference >= oneRoundTime) {
           that.count = that.count - 1
 
@@ -81,12 +93,20 @@ export default {
             clearInterval(player)
             that.breathingTimer(that)
           }
-        } else if (timeDifference <= 2) that.nowPlaying = 'Inhale'
-        else if (timeDifference > 2 && timeDifference <= 4)
+        } else if (timeDifference <= inhaleTimer) that.nowPlaying = 'Inhale'
+        else if (
+          that.breathCycle[1] !== 0 &&
+          timeDifference > inhaleTimer &&
+          timeDifference <= holdTimer
+        )
           that.nowPlaying = 'Hold'
-        else if (timeDifference > 4 && timeDifference <= 6)
+        else if (timeDifference > holdTimer && timeDifference <= exhaleTimer)
           that.nowPlaying = 'Exhale'
-        else if (timeDifference > 6 && timeDifference <= 8)
+        else if (
+          that.breathCycle[3] !== 0 &&
+          timeDifference > exhaleTimer &&
+          timeDifference <= sustainTimer
+        )
           that.nowPlaying = 'Sustain'
       }, 10)
     },
@@ -114,7 +134,7 @@ export default {
 
       this.countdownTimer()
       setTimeout(function() {
-        that.breathingTimer(that)
+        that.breathingTimer()
       }, 4000)
     }
   }
