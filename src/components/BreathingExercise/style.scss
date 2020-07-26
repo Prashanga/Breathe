@@ -55,6 +55,15 @@
   height: 25vh !important;
 }
 
-.select-techniques {
-  color: black;
+.theme--light.v-list {
+  background: #17252a;
+}
+.v-list-item__content {
+  color: white;
+}
+.v-list .v-list-item--active {
+  background-color: #717274;
+}
+.theme--light.v-list-item:hover:before {
+  opacity: 0.8;
 }

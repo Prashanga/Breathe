@@ -6,16 +6,25 @@ export default {
   name: 'BoxBreathing',
   data: () => {
     return {
-      breathingTechnique: breathingTechniques.boxBreathing,
+      breathingTechniques: breathingTechniques,
+      currentTechnique: 'Box Breathing',
       nowPlaying: '',
       timerPlaying: false,
       playing: false,
       count: null,
-      timer: '',
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      timer: ''
     }
   },
+
   computed: {
+    breathingTechnique() {
+      return this.breathingTechniques.find(
+        tech => tech.title === this.currentTechnique
+      )
+    },
+    items() {
+      return this.breathingTechniques.map(tech => tech.title)
+    },
     totalPlayingTime() {
       return (
         this.breathingTechnique.breathCycle.reduce(
@@ -40,6 +49,10 @@ export default {
     }
   },
   methods: {
+    findBreathingTechnique() {},
+    selectBreathingTechnique(title) {
+      this.currentTechnique = title
+    },
     clearAllTimers() {
       this.playing = false
       this.nowPlaying = ''
@@ -146,6 +159,7 @@ export default {
                 elevation="3"
                 absolute
                 bottom
+                x-large
                 color="primaryBlack"
                 class="play-button"
                 :ripple="false"
@@ -155,6 +169,7 @@ export default {
                   class="fab-icons"
                   v-if="!playing"
                   :ripple="false"
+                  x-large
                   >mdi-play</v-icon
                 >
                 <v-icon
@@ -162,6 +177,7 @@ export default {
                   v-if="playing"
                   class="fab-icons"
                   :ripple="false"
+                  x-large
                   >mdi-pause</v-icon
                 >
               </v-btn>
@@ -205,10 +221,11 @@ export default {
           </v-col>
         </v-row>
         <v-row justify="center" class="mt-8">
-          <v-col cols="11">
+          <v-col cols="12">
             <v-select
               :items="items"
-              label="Choose One"
+              :label="breathingTechnique.title"
+              @change="selectBreathingTechnique"
               background-color="primaryBlack"
               class="select-techniques"
               item-color="primaryBlack"
