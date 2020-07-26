@@ -3,7 +3,7 @@ import './style.scss'
 import { breathingTechniques } from '../../techniques'
 
 export default {
-  name: 'BoxBreathing',
+  name: 'MainPage',
   data: () => {
     return {
       breathingTechniques: breathingTechniques,
@@ -15,7 +15,6 @@ export default {
       timer: ''
     }
   },
-
   computed: {
     breathingTechnique() {
       return this.breathingTechniques.find(
@@ -49,9 +48,9 @@ export default {
     }
   },
   methods: {
-    findBreathingTechnique() {},
     selectBreathingTechnique(title) {
       this.currentTechnique = title
+      this.$store.dispatch('setTitle', title)
     },
     clearAllTimers() {
       this.playing = false

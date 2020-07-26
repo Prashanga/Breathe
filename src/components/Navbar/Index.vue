@@ -1,4 +1,5 @@
 <script>
+import { mapState } from 'vuex'
 import './style.scss'
 
 export default {
@@ -14,6 +15,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['title']),
     isMobile() {
       return this.$vuetify.breakpoint.xsOnly
     },
@@ -37,9 +39,9 @@ export default {
         color="primaryBlack"
       ></v-app-bar-nav-icon>
       <v-spacer v-if="isMobile"></v-spacer>
-      <v-toolbar-title v-bind:class="toolbarTitleColor"
-        >Title Breathing</v-toolbar-title
-      >
+      <v-toolbar-title v-bind:class="toolbarTitleColor">{{
+        title
+      }}</v-toolbar-title>
       <v-spacer v-if="isMobile"></v-spacer>
       <v-spacer></v-spacer>
 
