@@ -32,15 +32,6 @@
   color: rgb(215, 250, 16);
 }
 
-// .breathing-circle {
-//   height: 25vh;
-//   width: 25vh;
-//   background-color: white;
-//   border-radius: 50%;
-//   min-width: 100px;
-//   min-height: 100px;
-// }
-
 .nowPlayingText {
   font-size: 2rem !important;
 }
@@ -59,4 +50,16 @@
 }
 .theme--light.v-list-item:hover:before {
   opacity: 0.8;
+}
+.v-messages {
+  color: #17252a !important;
+}
+.v-input {
+  color: #17252a !important;
+}
+.ratio-setting .v-label {
+  color: #17252a !important;
+}
+.ratio-setting i {
+  color: #17252a !important;
 }

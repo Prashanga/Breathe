@@ -12,7 +12,8 @@ export default {
       timerPlaying: false,
       playing: false,
       count: null,
-      timer: ''
+      timer: '',
+      ratioOfSeconds: 1
     }
   },
   computed: {
@@ -22,7 +23,9 @@ export default {
       )
     },
     breathCycle() {
-      return this.breathingTechnique.breathCycle
+      return this.breathingTechnique.breathCycle.map(
+        tech => tech * this.ratioOfSeconds
+      )
     },
     items() {
       return this.breathingTechniques.map(tech => tech.title)
@@ -88,6 +91,10 @@ export default {
       this.clearAllTimers()
       this.currentTechnique = title
       this.$store.dispatch('setTitle', title)
+    },
+    selectBreathingRatio(ratio) {
+      this.clearAllTimers()
+      this.ratioOfSeconds = ratio
     },
     clearAllTimers() {
       this.playing = false
@@ -265,15 +272,24 @@ export default {
           </v-col>
 
           <!--       Right Column               -->
-          <v-col cols="6" class="pl-8">
+          <v-col cols="5" class="pl-8">
             <v-row justify="start" class="mb-2">
+              <v-select
+                :items="[0.5, 1, 2, 4, 5]"
+                prepend-icon="mdi-cog"
+                label="Ratio"
+                hint="Each breathing cycle"
+                class="ratio-setting"
+                color="primaryBlack"
+                persistent-hint
+                @change="selectBreathingRatio"
+                dense
+              ></v-select>
+            </v-row>
+            <!-- <v-row justify="start">
               <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
               Ratio
-            </v-row>
-            <v-row justify="start">
-              <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
-              Ratio
-            </v-row>
+            </v-row> -->
           </v-col>
         </v-row>
         <v-row justify="center" class="mt-8">
@@ -281,7 +297,8 @@ export default {
             <v-select
               :items="items"
               :label="breathingTechnique.title"
-              hint="Select "
+              hint="Select Breathing Technique"
+              persistent-hint
               @change="selectBreathingTechnique"
               background-color="primaryBlack"
               class="select-techniques"
