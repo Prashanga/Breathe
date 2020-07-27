@@ -14,7 +14,17 @@ export default {
       count: null,
       timer: '',
       ratioOfSeconds: 1,
-      music: true
+      music: true,
+      musicItems: [
+        {
+          text: 'on',
+          value: true
+        },
+        {
+          text: 'off',
+          value: false
+        }
+      ]
     }
   },
   computed: {
@@ -88,6 +98,9 @@ export default {
     }
   },
   methods: {
+    changeMusicPref(pref) {
+      this.music = pref
+    },
     selectBreathingTechnique(title) {
       this.clearAllTimers()
       this.currentTechnique = title
@@ -270,8 +283,11 @@ export default {
           <!--           Left Column            -->
           <v-col cols="6">
             <v-select
-              :items="['on', 'off']"
+              item-text="text"
+              item-value="value"
+              :items="musicItems"
               :v-model="music"
+              @change="changeMusicPref"
               prepend-icon="mdi-cog"
               label="Music"
               hint="Toggle music"
@@ -279,7 +295,8 @@ export default {
               color="primaryBlack"
               persistent-hint
               dense
-            ></v-select>
+            >
+            </v-select>
           </v-col>
 
           <!--       Right Column               -->
