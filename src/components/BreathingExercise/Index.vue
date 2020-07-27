@@ -13,7 +13,8 @@ export default {
       playing: false,
       count: null,
       timer: '',
-      ratioOfSeconds: 1
+      ratioOfSeconds: 1,
+      music: true
     }
   },
   computed: {
@@ -268,7 +269,17 @@ export default {
         <v-row class="pt-12" align="center" justify="start">
           <!--           Left Column            -->
           <v-col cols="6">
-            <p>Hello player controls here</p>
+            <v-select
+              :items="['on', 'off']"
+              :v-model="music"
+              prepend-icon="mdi-cog"
+              label="Music"
+              hint="Toggle music"
+              class="ratio-setting"
+              color="primaryBlack"
+              persistent-hint
+              dense
+            ></v-select>
           </v-col>
 
           <!--       Right Column               -->
@@ -278,7 +289,7 @@ export default {
                 :items="[0.5, 1, 2, 4, 5]"
                 prepend-icon="mdi-cog"
                 label="Ratio"
-                hint="Each breathing cycle"
+                hint="Breathing cycle"
                 class="ratio-setting"
                 color="primaryBlack"
                 persistent-hint
@@ -292,7 +303,7 @@ export default {
             </v-row> -->
           </v-col>
         </v-row>
-        <v-row justify="center" class="mt-8">
+        <v-row justify="center" class="mt-4">
           <v-col cols="12">
             <v-select
               :items="items"
