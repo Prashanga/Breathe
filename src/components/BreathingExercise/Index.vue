@@ -1,4 +1,5 @@
 <script>
+import InfoModal from '../InfoModal/Index'
 import './style.scss'
 import { breathingTechniques } from '../../techniques'
 // import inhaleMp3 from '../../assets/inhale.mp3'
@@ -8,10 +9,14 @@ import { breathingTechniques } from '../../techniques'
 
 export default {
   name: 'MainPage',
+  components: {
+    InfoModal
+  },
   data: () => {
     return {
       breathingTechniques: breathingTechniques,
       currentTechnique: 'Box Breathing',
+      infoModal: false,
       nowPlaying: '',
       timerPlaying: false,
       playing: false,
@@ -119,6 +124,9 @@ export default {
     selectBreathingRatio(ratio) {
       this.clearAllTimers()
       this.ratioOfSeconds = ratio
+    },
+    toggleInfoModal() {
+      this.infoModal = !this.infoModal
     },
     clearAllTimers() {
       this.playing = false
@@ -230,6 +238,7 @@ export default {
     fluid
     style="height:100%; width:100%; background-color:blue;"
   >
+    <InfoModal :value="infoModal" v-on:toggleModal="toggleInfoModal" />
     <v-row style="height:100%;">
       <!----------- Player  ----------->
       <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
@@ -306,6 +315,7 @@ export default {
               absolute
               bottom
               fab
+              @click="toggleInfoModal"
               :ripple="false"
               color="primaryBlack"
               ><v-icon class="info-icon" medium color="primaryWhite"
