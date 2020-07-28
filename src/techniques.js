@@ -5,7 +5,7 @@ export const breathingTechniques = [
     breathCycle: [4, 4, 4, 4],
     numberOfRepetition: 10,
     duration: null,
-    usage: ['Relaxing', 'Calming', 'Focus']
+    usage: ['Relax', 'Calm', 'Focus']
   },
   {
     id: 2,
@@ -13,14 +13,14 @@ export const breathingTechniques = [
     breathCycle: [4, 7, 8, 0],
     numberOfRepetition: 10,
     duration: null,
-    usage: ['Relaxing', 'Concentration']
+    usage: ['Relax', 'Concentrate']
   },
   {
     id: 3,
-    title: 'Test Breathing',
-    breathCycle: [2, 2, 2, 2],
+    title: 'Inhale-Exhale',
+    breathCycle: [4, 4, 4, 4],
     numberOfRepetition: 10,
     duration: null,
-    usage: ['Relaxing', 'Concentration']
+    usage: ['Relax']
   }
 ]
