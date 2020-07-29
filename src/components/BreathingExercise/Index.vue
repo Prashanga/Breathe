@@ -37,7 +37,14 @@ export default {
       inhaleMusic: null,
       holdMusic: null,
       exhaleMusic: null,
-      sustainMusic: null
+      sustainMusic: null,
+      audioCount: 0,
+      isMusicPlayed: {
+        inhale: false,
+        hold: false,
+        exhale: false,
+        sustain: false
+      }
     }
   },
   mounted: function() {
@@ -134,6 +141,7 @@ export default {
       this.timer = ''
       this.timerPlaying = false
       this.stopAllAudio()
+      this.createFreshIsplayed()
       let id = window.setTimeout(function() {}, 0)
       while (id--) {
         window.clearTimeout(id) // will do nothing if no timeout with id is present
@@ -147,7 +155,7 @@ export default {
       let player = setInterval(function() {
         let timeNow = new Date()
         const timeDifference = (timeNow - timeAtStart) / 1000
-        // console.log(timeDifference)
+
         if (timeDifference >= oneRoundTime) {
           that.count = that.count - 1
 
@@ -159,10 +167,11 @@ export default {
             that.stopAllAudio()
             clearInterval(player)
             that.breathingTimer(that)
+            that.createFreshIsplayed()
           }
         } else if (timeDifference <= that.inhaleTime) {
           that.nowPlaying = 'Inhale'
-          that.playAudio(that.inhaleMusic)
+          that.playAudio(that.inhaleMusic, 'inhale')
         } else if (
           that.breathCycle[1] !== 0 &&
           timeDifference > that.inhaleTime &&
@@ -170,14 +179,15 @@ export default {
         ) {
           that.nowPlaying = 'Hold'
           that.inhaleMusic.pause()
-          that.playAudio(that.holdMusic)
+          that.playAudio(that.holdMusic, 'hold')
         } else if (
           timeDifference > that.holdTime &&
           timeDifference <= that.exhaleTime
         ) {
           that.nowPlaying = 'Exhale'
           !that.holdMusic.paused && that.holdMusic.pause()
-          that.playAudio(that.exhaleMusic)
+          that.audioCount = 0
+          that.playAudio(that.exhaleMusic, 'exhale')
         } else if (
           that.breathCycle[3] !== 0 &&
           timeDifference > that.exhaleTime &&
@@ -185,7 +195,8 @@ export default {
         ) {
           that.nowPlaying = 'Sustain'
           that.exhaleMusic.pause()
-          that.playAudio(that.sustainMusic)
+          that.audioCount = 0
+          that.playAudio(that.sustainMusic, 'sustain')
         }
       }, 10)
     },
@@ -216,9 +227,10 @@ export default {
         that.breathingTimer()
       }, 4000)
     },
-    playAudio(audio) {
+    playAudio(audio, current) {
       if (audio.paused) audio.currentTime = 0
-      audio.play()
+      if (!this.isMusicPlayed[current]) audio.play()
+      this.isMusicPlayed[current] = true
     },
     stopAllAudio() {
       let audios = [
@@ -228,6 +240,14 @@ export default {
         this.sustainMusic
       ]
       audios.forEach(audio => !audio.paused && audio.pause())
+    },
+    createFreshIsplayed() {
+      this.isMusicPlayed = {
+        inhale: false,
+        hold: false,
+        exhale: false,
+        sustain: false
+      }
     }
   }
 }
