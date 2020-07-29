@@ -2,10 +2,10 @@
 import InfoModal from '../InfoModal/Index'
 import './style.scss'
 import { breathingTechniques } from '../../techniques'
-// import inhaleMp3 from '../../assets/inhale.mp3'
-// // import holdMp3 from '../../assets/hold.mp3'
-// import exhaleMp3 from '../../assets/exhale.mp3'
-// import sustainMp3 from '../../assets/sustain.mp3'
+import inhaleMp3 from '../../assets/inhale.mp3'
+import holdMp3 from '../../assets/hold.mp3'
+import exhaleMp3 from '../../assets/exhale.mp3'
+import sustainMp3 from '../../assets/sustain.mp3'
 
 export default {
   name: 'MainPage',
@@ -41,10 +41,10 @@ export default {
     }
   },
   mounted: function() {
-    // this.inhaleMusic = new Audio(sustainMp3)
-    // this.holdMusic = new Audio(inhaleMp3)
-    // this.exhaleMusic = new Audio(exhaleMp3)
-    // this.sustainMusic = new Audio(inhaleMp3)
+    this.inhaleMusic = new Audio(inhaleMp3)
+    this.holdMusic = new Audio(holdMp3)
+    this.exhaleMusic = new Audio(exhaleMp3)
+    this.sustainMusic = new Audio(sustainMp3)
   },
   computed: {
     breathingTechnique() {
@@ -132,7 +132,8 @@ export default {
       this.playing = false
       this.nowPlaying = ''
       this.timer = ''
-      // this.stopAllAudio()
+      this.timerPlaying = false
+      this.stopAllAudio()
       let id = window.setTimeout(function() {}, 0)
       while (id--) {
         window.clearTimeout(id) // will do nothing if no timeout with id is present
@@ -151,40 +152,40 @@ export default {
           that.count = that.count - 1
 
           if (that.count <= 0) {
-            // that.stopAllAudio()
+            that.stopAllAudio()
             that.nowPlaying = ''
             that.clearAllTimers()
           } else {
-            // that.stopAllAudio()
+            that.stopAllAudio()
             clearInterval(player)
             that.breathingTimer(that)
           }
         } else if (timeDifference <= that.inhaleTime) {
           that.nowPlaying = 'Inhale'
-          // that.playAudio(that.inhaleMusic)
+          that.playAudio(that.inhaleMusic)
         } else if (
           that.breathCycle[1] !== 0 &&
           timeDifference > that.inhaleTime &&
           timeDifference <= that.holdTime
         ) {
           that.nowPlaying = 'Hold'
-          // that.inhaleMusic.pause()
-          // that.playAudio(that.holdMusic)
+          that.inhaleMusic.pause()
+          that.playAudio(that.holdMusic)
         } else if (
           timeDifference > that.holdTime &&
           timeDifference <= that.exhaleTime
         ) {
           that.nowPlaying = 'Exhale'
-          // !that.holdMusic.paused && that.holdMusic.pause()
-          // that.playAudio(that.exhaleMusic)
+          !that.holdMusic.paused && that.holdMusic.pause()
+          that.playAudio(that.exhaleMusic)
         } else if (
           that.breathCycle[3] !== 0 &&
           timeDifference > that.exhaleTime &&
           timeDifference <= that.sustainTime
         ) {
           that.nowPlaying = 'Sustain'
-          // that.exhaleMusic.pause()
-          //  that.playAudio(that.sustainMusic)
+          that.exhaleMusic.pause()
+          that.playAudio(that.sustainMusic)
         }
       }, 10)
     },
@@ -246,10 +247,11 @@ export default {
           <v-col cols="12" class="my-o py-0">
             <v-row class="circle-container-row" justify="center" align="center">
               <div v-if="!timerPlaying && !playing">
-                <p class="text-h5 mt-4 white--text">
-                  Press the start button
+                <p class="text-h5 mt-4 white--text mx-4">
+                  Relax, and press the start button
                 </p>
               </div>
+
               <div v-if="timerPlaying">
                 <p class="text-h2 mt-4 white--text">{{ timer }}</p>
               </div>
