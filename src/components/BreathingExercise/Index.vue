@@ -398,14 +398,25 @@ export default {
                 :items="[0.5, 1, 2, 4, 5]"
                 v-model="ratioOfSeconds"
                 prepend-icon="mdi-cog"
-                hint="Timer duration ratio"
+                hint="Timer duration"
                 class="ratio-setting"
-                color="primaryBlack"
                 persistent-hint
                 @change="selectBreathingRatio"
                 dense
                 x-small
-              ></v-select>
+              >
+                <template v-slot:append-item>
+                  <v-divider color="white "></v-divider>
+                  <v-list-item disabled>
+                    <v-list-item-content>
+                      <v-list-item-title class="white--text"
+                        ><p>Duration of unit time</p>
+                        <p>in seconds</p></v-list-item-title
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </template>
+              </v-select>
 
               <v-select
                 :items="[5, 10, 15, 20, 25, 50, 100]"
@@ -416,12 +427,9 @@ export default {
                 color="primaryBlack"
                 persistent-hint
                 dense
-              ></v-select>
+              >
+              </v-select>
             </v-row>
-            <!-- <v-row justify="start">
-              <v-icon class="mr-2" color="primaryBlack">mdi-cog</v-icon>
-              Ratio
-            </v-row> -->
           </v-col>
         </v-row>
         <v-row justify="center" class="mt-4">
