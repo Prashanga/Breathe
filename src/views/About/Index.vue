@@ -4,7 +4,7 @@ export default {}
 </script>
 
 <template>
-  <div class="px-1">
+  <div class="px-1 about-page">
     <div style="height:50px;"></div>
     <div class="text-h6">
       <p>

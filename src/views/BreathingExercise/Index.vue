@@ -57,6 +57,7 @@ export default {
     this.exhaleMusic = new Audio(exhaleMp3)
     this.sustainMusic = new Audio(sustainMp3)
     this.endMusic = new Audio(endMusic)
+    this.$store.dispatch('setTitle', this.currentTechnique)
   },
   beforeDestroy: function() {
     this.clearAllTimers()
