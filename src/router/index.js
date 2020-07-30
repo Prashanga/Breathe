@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import BreathingExercise from '../components/BreathingExercise/Index.vue'
+import BreathingExercise from '../views/BreathingExercise/Index.vue'
 
 Vue.use(VueRouter)
 

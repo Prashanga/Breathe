@@ -1,5 +1,5 @@
 <script>
-import InfoModal from '../InfoModal/Index'
+import InfoModal from '../../components/InfoModal/Index'
 import './style.scss'
 import { breathingTechniques } from '../../techniques'
 import inhaleMp3 from '../../assets/inhale.mp3'
@@ -58,6 +58,10 @@ export default {
     this.sustainMusic = new Audio(sustainMp3)
     this.endMusic = new Audio(endMusic)
   },
+  beforeDestroy: function() {
+    this.clearAllTimers()
+  },
+
   computed: {
     breathingTechnique() {
       return this.breathingTechniques.find(
