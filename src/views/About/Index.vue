@@ -1,6 +1,11 @@
 <script>
 import './style.scss'
-export default {}
+export default {
+  name: 'About',
+  beforeMount: function() {
+    this.$store.dispatch('setTitle', 'About')
+  }
+}
 </script>
 
 <template>
