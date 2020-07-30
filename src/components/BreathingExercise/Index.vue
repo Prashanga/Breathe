@@ -6,6 +6,7 @@ import inhaleMp3 from '../../assets/inhale.mp3'
 import holdMp3 from '../../assets/hold.mp3'
 import exhaleMp3 from '../../assets/exhale.mp3'
 import sustainMp3 from '../../assets/sustain.mp3'
+import endMusic from '../../assets/endMusic.mp3'
 
 export default {
   name: 'MainPage',
@@ -23,6 +24,7 @@ export default {
       count: null,
       timer: '',
       ratioOfSeconds: 1,
+      numberOfRepetition: 10,
       music: true,
       musicItems: [
         {
@@ -38,12 +40,14 @@ export default {
       holdMusic: null,
       exhaleMusic: null,
       sustainMusic: null,
+      endMusic: null,
       audioCount: 0,
       isMusicPlayed: {
         inhale: false,
         hold: false,
         exhale: false,
-        sustain: false
+        sustain: false,
+        end: false
       }
     }
   },
@@ -52,6 +56,7 @@ export default {
     this.holdMusic = new Audio(holdMp3)
     this.exhaleMusic = new Audio(exhaleMp3)
     this.sustainMusic = new Audio(sustainMp3)
+    this.endMusic = new Audio(endMusic)
   },
   computed: {
     breathingTechnique() {
@@ -88,9 +93,10 @@ export default {
       )
     },
 
-    numberOfRepetition() {
-      return this.breathingTechnique.numberOfRepetition
-    },
+    // numberOfRepetition() {
+    //   return 5
+    //   // return this.breathingTechnique.numberOfRepetition
+    // },
     playerCol() {
       return {
         mobileColumnPlayer: this.$vuetify.breakpoint.smAndDown,
@@ -163,6 +169,7 @@ export default {
             that.stopAllAudio()
             that.nowPlaying = ''
             that.clearAllTimers()
+            that.playAudio(that.endMusic, 'end')
           } else {
             that.stopAllAudio()
             clearInterval(player)
@@ -237,7 +244,8 @@ export default {
         this.exhaleMusic,
         this.inhaleMusic,
         this.holdMusic,
-        this.sustainMusic
+        this.sustainMusic,
+        this.endMusic
       ]
       audios.forEach(audio => !audio.paused && audio.pause())
     },
@@ -246,7 +254,8 @@ export default {
         inhale: false,
         hold: false,
         exhale: false,
-        sustain: false
+        sustain: false,
+        end: false
       }
     }
   }
@@ -387,13 +396,25 @@ export default {
             <v-row justify="start" class="mb-2">
               <v-select
                 :items="[0.5, 1, 2, 4, 5]"
+                v-model="ratioOfSeconds"
                 prepend-icon="mdi-cog"
-                label="Ratio"
-                hint="Breathing cycle"
+                hint="Timer duration ratio"
                 class="ratio-setting"
                 color="primaryBlack"
                 persistent-hint
                 @change="selectBreathingRatio"
+                dense
+                x-small
+              ></v-select>
+
+              <v-select
+                :items="[5, 10, 15, 20, 25, 50, 100]"
+                v-model="numberOfRepetition"
+                prepend-icon="mdi-cog"
+                hint="Total rounds"
+                class="ratio-setting"
+                color="primaryBlack"
+                persistent-hint
                 dense
               ></v-select>
             </v-row>
