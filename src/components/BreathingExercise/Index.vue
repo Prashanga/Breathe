@@ -93,10 +93,6 @@ export default {
       )
     },
 
-    // numberOfRepetition() {
-    //   return 5
-    //   // return this.breathingTechnique.numberOfRepetition
-    // },
     playerCol() {
       return {
         mobileColumnPlayer: this.$vuetify.breakpoint.smAndDown,
@@ -126,9 +122,6 @@ export default {
     }
   },
   methods: {
-    changeMusicPref(pref) {
-      this.music = pref
-    },
     selectBreathingTechnique(title) {
       this.clearAllTimers()
       this.currentTechnique = title
@@ -236,7 +229,7 @@ export default {
     },
     playAudio(audio, current) {
       if (audio.paused) audio.currentTime = 0
-      if (!this.isMusicPlayed[current]) audio.play()
+      if (!this.isMusicPlayed[current] && this.music) audio.play()
       this.isMusicPlayed[current] = true
     },
     stopAllAudio() {
@@ -359,35 +352,51 @@ export default {
 
       <!----------- Controls  ----------->
 
-      <v-col pa-0 ma-0 cols="12" md="4" :class="controlsCol">
-        <v-row class="pt-8" align="center" justify="start">
+      <v-col cols="12" md="4" :class="controlsCol" class="ma-0">
+        <v-row class="pt-6 ma-0" align="center" justify="start">
           <!--           Left Column            -->
           <v-col cols="6">
-            <v-chip
-              v-for="usage in breathingTechnique.usage"
-              :key="usage"
-              class="ma-2"
-              small
-              dark
-              color="primaryBlack "
-            >
-              {{ usage }}
-            </v-chip>
+            <v-row align="center" justify="center">
+              <v-col cols="12" class="ma-0 pa-0">
+                <v-chip
+                  v-for="usage in breathingTechnique.usage"
+                  :key="usage"
+                  class="mb-2 mr-2"
+                  small
+                  dark
+                  color="primaryBlack "
+                >
+                  {{ usage }}
+                </v-chip>
+              </v-col>
+              <v-col cols="12" class="ma-0">
+                <v-row align="center" justify="center" class="ma-0 pa-0">
+                  <v-switch
+                    v-model="music"
+                    :label="music ? 'on' : 'off'"
+                    hint="Music"
+                    class="ratio-setting ma-0"
+                    color="primaryBlack"
+                    persistent-hint
+                  ></v-switch>
+                </v-row>
+              </v-col>
+            </v-row>
           </v-col>
 
           <!--       Right Column               -->
-          <v-col cols="5" class="pl-8">
+          <v-col cols="5" class="pl-8 pt-0">
             <v-row justify="start" align="center" class="mb-2">
               <v-select
                 :items="[0.5, 1, 2, 4, 5]"
                 v-model="ratioOfSeconds"
+                @change="clearAllTimers"
                 prepend-icon="mdi-cog"
                 hint="Timer duration"
-                class="ratio-setting"
+                class="ratio-setting ma-0"
+                color="primaryBlack"
                 persistent-hint
-                @change="clearAllTimers"
                 dense
-                x-small
               >
                 <template v-slot:append-item>
                   <v-divider color="white "></v-divider>
@@ -414,18 +423,10 @@ export default {
                 dense
               >
               </v-select>
-              <v-switch
-                v-model="music"
-                :label="music ? 'on' : 'off'"
-                hint="Music"
-                class="ratio-setting"
-                color="primaryBlack"
-                persistent-hint
-              ></v-switch>
             </v-row>
           </v-col>
         </v-row>
-        <v-row justify="center">
+        <v-row justify="center" class="mt-0 pt-0">
           <v-col cols="12">
             <v-select
               :items="items"
