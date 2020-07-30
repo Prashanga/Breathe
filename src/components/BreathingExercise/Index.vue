@@ -363,22 +363,6 @@ export default {
         <v-row class="pt-8" align="center" justify="start">
           <!--           Left Column            -->
           <v-col cols="6">
-            <!-- <v-select
-              item-text="text"
-              item-value="value"
-              :items="musicItems"
-              :v-model="music"
-              @change="changeMusicPref"
-              prepend-icon="mdi-cog"
-              label="Music"
-              hint="Toggle music"
-              class="ratio-setting"
-              color="primaryBlack"
-              persistent-hint
-              dense
-            >
-            </v-select> -->
-
             <v-chip
               v-for="usage in breathingTechnique.usage"
               :key="usage"
@@ -393,7 +377,7 @@ export default {
 
           <!--       Right Column               -->
           <v-col cols="5" class="pl-8">
-            <v-row justify="start" class="mb-2">
+            <v-row justify="start" align="center" class="mb-2">
               <v-select
                 :items="[0.5, 1, 2, 4, 5]"
                 v-model="ratioOfSeconds"
@@ -401,7 +385,7 @@ export default {
                 hint="Timer duration"
                 class="ratio-setting"
                 persistent-hint
-                @change="selectBreathingRatio"
+                @change="clearAllTimers"
                 dense
                 x-small
               >
@@ -421,6 +405,7 @@ export default {
               <v-select
                 :items="[5, 10, 15, 20, 25, 50, 100]"
                 v-model="numberOfRepetition"
+                @change="clearAllTimers"
                 prepend-icon="mdi-cog"
                 hint="Total rounds"
                 class="ratio-setting"
@@ -429,10 +414,18 @@ export default {
                 dense
               >
               </v-select>
+              <v-switch
+                v-model="music"
+                :label="music ? 'on' : 'off'"
+                hint="Music"
+                class="ratio-setting"
+                color="primaryBlack"
+                persistent-hint
+              ></v-switch>
             </v-row>
           </v-col>
         </v-row>
-        <v-row justify="center" class="mt-4">
+        <v-row justify="center">
           <v-col cols="12">
             <v-select
               :items="items"

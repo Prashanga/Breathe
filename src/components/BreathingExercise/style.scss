@@ -51,6 +51,11 @@
 .theme--light.v-list-item:hover:before {
   opacity: 0.8;
 }
+
+.v-input--selection-controls__ripple {
+  background-color: none !important;
+  height: 0 !important;
+}
 .v-messages {
   color: #17252a !important;
 }
