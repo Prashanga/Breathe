@@ -30,7 +30,7 @@ export default {
         <v-btn icon dark v-on:click="$emit('toggleModal')">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-layout column justify-center>
+        <v-layout column class="pt-8">
           <p>
             You can select between three breathing techniques from the select
             button at the bottom of the app

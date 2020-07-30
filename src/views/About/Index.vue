@@ -1,0 +1,31 @@
+<script>
+import './style.scss'
+export default {}
+</script>
+
+<template>
+  <div class="px-1">
+    <div style="height:50px;"></div>
+    <div class="text-h6">
+      <p>
+        This application is developed as a part of the
+        <a href="http://code.sydney/" target="blank">Code.Sydney's</a>
+        Vue Joint Learning Program
+      </p>
+      <p>Developed By:</p>
+      <p class="mt-n3">
+        <v-icon color="primaryBlack">mdi-linkedin</v-icon>
+        <a
+          href="https://www.linkedin.com/in/prashanga-dhakal-0a4677a6/"
+          target="blank"
+        >
+          Prashanga Dhakal</a
+        >
+      </p>
+      <p class="mt-n3">
+        <v-icon color="primaryBlack">mdi-github</v-icon>
+        <a href="https://github.com/Prashanga"> Prashanga</a>
+      </p>
+    </div>
+  </div>
+</template>
