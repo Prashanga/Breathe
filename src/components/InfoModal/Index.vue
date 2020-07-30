@@ -30,10 +30,29 @@ export default {
         <v-btn icon dark v-on:click="$emit('toggleModal')">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-layout column justify-center align-center>
+        <v-layout column justify-center>
           <p>
-            This section is currently under construction. Will be updated
-            soon.....
+            You can select between three breathing techniques from the select
+            button at the bottom of the app
+          </p>
+          <p>
+            The timer duration setting lets you choose how long each cycle of
+            the exercise lasts. The default being 1.
+          </p>
+          <p>
+            Total rounds setting lets you select the number of rounds the
+            exercise will run for. Default is 10 rounds
+          </p>
+          <v-divider color="white"></v-divider>
+          <p></p>
+          <p>
+            You can read about the technniques here:
+          </p>
+          <p>
+            Box Breathing: https://www.healthline.com/health/box-breathing
+          </p>
+          <p>
+            4-5-7 Breathing: https://www.healthline.com/health/4-7-8-breathing
           </p>
         </v-layout>
       </v-container>
