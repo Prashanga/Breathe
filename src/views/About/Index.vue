@@ -36,5 +36,10 @@ export default {
         <a href="https://github.com/Prashanga" target="_blank"> Prashanga</a>
       </p>
     </div>
+    <div class="text-body-1 mt-8">
+      <p>
+        Disclaimer: This app is not meant to be used for medical purposes
+      </p>
+    </div>
   </div>
 </template>
