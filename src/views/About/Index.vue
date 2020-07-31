@@ -19,7 +19,7 @@ export default {
       </p>
       <p>
         The app is developed using Vue and Vuetify. The app looks better on
-        Mobile devices, although, the desktop version isn't to bad either
+        Mobile devices, although the desktop version isn't too bad either
       </p>
       <p>Developed By:</p>
       <p class="mt-n3">
