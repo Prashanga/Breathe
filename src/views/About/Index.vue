@@ -14,7 +14,7 @@ export default {
     <div class="text-h6">
       <p>
         This application is developed as a part of the
-        <a href="http://code.sydney/" target="blank">Code.Sydney's</a>
+        <a href="http://code.sydney/" target="_blank">Code.Sydney's</a>
         Vue Joint Learning Program
       </p>
       <p>
@@ -26,14 +26,14 @@ export default {
         <v-icon color="primaryBlack">mdi-linkedin</v-icon>
         <a
           href="https://www.linkedin.com/in/prashanga-dhakal-0a4677a6/"
-          target="blank"
+          target="_blank"
         >
           Prashanga Dhakal</a
         >
       </p>
       <p class="mt-n3">
         <v-icon color="primaryBlack">mdi-github</v-icon>
-        <a href="https://github.com/Prashanga"> Prashanga</a>
+        <a href="https://github.com/Prashanga" target="_blank"> Prashanga</a>
       </p>
     </div>
   </div>

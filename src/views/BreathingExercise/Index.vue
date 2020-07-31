@@ -306,7 +306,11 @@ export default {
           </v-col>
 
           <v-col cols="12" class="mt-6 py-0">
-            <v-row justify="center" align="center" class="nowPlayingText">
+            <v-row
+              justify="center"
+              align="center"
+              class="nowPlayingText white--text"
+            >
               {{ nowPlaying }}
             </v-row>
           </v-col>
