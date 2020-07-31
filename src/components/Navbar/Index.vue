@@ -39,7 +39,7 @@ export default {
         color="primaryBlack"
       ></v-app-bar-nav-icon>
       <v-spacer v-if="isMobile"></v-spacer>
-      <v-toolbar-title v-bind:class="toolbarTitleColor">{{
+      <v-toolbar-title v-bind:class="toolbarTitleColor" class="text-h5">{{
         title
       }}</v-toolbar-title>
       <v-spacer v-if="isMobile"></v-spacer>

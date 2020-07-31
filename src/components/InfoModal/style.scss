@@ -1,9 +1,7 @@
-.dialog.centered-dialog,
-.v-dialog.centered-dialog {
-  background: #17252a;
+.v-dialog {
+  background-color: #17252a !important;
   opacity: 0.98;
-  box-shadow: none;
   overflow: hidden;
   width: auto;
-  color: whitesmoke;
+  color: white !important;
 }

@@ -22,11 +22,11 @@ export default {
       v-model="modal"
       fullscreen
       persistent
-      content
-      content-class="centered-dialog"
-      color="primaryBlack"
+      dark
+      hide-overlay
+      class="info-modal"
     >
-      <v-container fill-height>
+      <v-container fill-height fluid>
         <v-btn icon dark v-on:click="$emit('toggleModal')">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -43,7 +43,10 @@ export default {
             Total rounds setting lets you select the number of rounds the
             exercise will run for. Default is 10 rounds
           </p>
-          <v-divider color="white"></v-divider>
+          <v-divider
+            v-if="$vuetify.breakpoint.smAndDown"
+            color="white"
+          ></v-divider>
           <p></p>
           <p>
             You can read about the technniques here:

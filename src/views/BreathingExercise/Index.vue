@@ -266,8 +266,8 @@ export default {
     fluid
     style="height:100%; width:100%; background-color:blue;"
   >
-    <InfoModal :value="infoModal" v-on:toggleModal="toggleInfoModal" />
     <v-row style="height:100%;">
+      <InfoModal :value="infoModal" v-on:toggleModal="toggleInfoModal" />
       <!----------- Player  ----------->
       <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
         <v-row justify="center" align="center">
@@ -307,12 +307,20 @@ export default {
           </v-col>
 
           <v-col cols="12">
-            <v-row justify="center" align="center" class="my-o py-0">
+            <v-row
+              justify="center"
+              align="center"
+              class="my-o py-0"
+              :class="{
+                'margin-top-play-button': $vuetify.breakpoint.mdAndUp
+              }"
+            >
               <v-btn
                 fab
                 depressed
                 elevation="3"
-                absolute
+                :absolute="!$vuetify.breakpoint.mdAndUp"
+                :fixed="$vuetify.breakpoint.mdAndUp"
                 bottom
                 x-large
                 color="primaryBlack"
@@ -339,13 +347,14 @@ export default {
             </v-row>
 
             <v-btn
-              small
+              :absolute="!$vuetify.breakpoint.mdAndUp"
+              @click="toggleInfoModal"
+              :fixed="$vuetify.breakpoint.mdAndUp"
+              :ripple="false"
               right
-              absolute
+              small
               bottom
               fab
-              @click="toggleInfoModal"
-              :ripple="false"
               color="primaryBlack"
               ><v-icon class="info-icon" medium color="primaryWhite"
                 >mdi-information-variant</v-icon
