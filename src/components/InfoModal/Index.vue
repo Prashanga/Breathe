@@ -52,10 +52,20 @@ export default {
             You can read about the technniques here:
           </p>
           <p>
-            Box Breathing: https://www.healthline.com/health/box-breathing
+            Box Breathing:
+            <a
+              target="_blank"
+              href="https://www.healthline.com/health/box-breathing"
+              >https://www.healthline.com/health/box-breathing</a
+            >
           </p>
           <p>
-            4-5-7 Breathing: https://www.healthline.com/health/4-7-8-breathing
+            4-5-7 Breathing:
+            <a
+              target="_blank"
+              href="https://www.healthline.com/health/4-7-8-breathing"
+              >https://www.healthline.com/health/4-7-8-breathing</a
+            >
           </p>
         </v-layout>
       </v-container>

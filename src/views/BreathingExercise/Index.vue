@@ -280,7 +280,7 @@ export default {
             >
               <div v-if="!timerPlaying && !playing">
                 <p class="text-h5 mt-4 white--text mx-4">
-                  Relax, and press the start button
+                  Relax and press the start button
                 </p>
               </div>
 
@@ -415,7 +415,7 @@ export default {
                 v-model="ratioOfSeconds"
                 @change="clearAllTimers"
                 prepend-icon="mdi-cog"
-                hint="Timer duration"
+                hint="Delay"
                 class="ratio-setting ma-0"
                 color="primaryBlack"
                 persistent-hint
@@ -426,9 +426,16 @@ export default {
                   <v-list-item disabled>
                     <v-list-item-content>
                       <v-list-item-title class="white--text"
-                        ><p>Duration of unit time</p>
-                        <p>in seconds</p></v-list-item-title
-                      >
+                        ><p>
+                          Higher value will
+                        </p>
+                        <p>
+                          increase the duration
+                        </p>
+                        <p>
+                          of each round
+                        </p>
+                      </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </template>
