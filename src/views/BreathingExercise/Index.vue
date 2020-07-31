@@ -272,7 +272,12 @@ export default {
       <v-col pa-0 ma-0 cols="12" md="8" :class="playerCol">
         <v-row justify="center" align="center">
           <v-col cols="12" class="my-o py-0">
-            <v-row class="circle-container-row" justify="center" align="center">
+            <v-row
+              class="circle-container-row"
+              justify="center"
+              align="center"
+              :class="{ 'mt-8': $vuetify.breakpoint.mdAndUp }"
+            >
               <div v-if="!timerPlaying && !playing">
                 <p class="text-h5 mt-4 white--text mx-4">
                   Relax, and press the start button

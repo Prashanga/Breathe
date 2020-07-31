@@ -39,9 +39,10 @@
   height: 25vh !important;
 }
 
-// .margin-top-play-button {
-//   margin-top: 155px;
-// }
+.v-text-field > .v-input__control > .v-input__slot:after {
+  border-color: transparent !important;
+  transform: none !important;
+}
 
 .theme--light.v-list {
   background: #17252a;
