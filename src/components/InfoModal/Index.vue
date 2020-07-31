@@ -18,14 +18,7 @@ export default {
 
 <template>
   <v-layout row justify-center>
-    <v-dialog
-      v-model="modal"
-      fullscreen
-      persistent
-      dark
-      hide-overlay
-      class="info-modal"
-    >
+    <v-dialog v-model="modal" fullscreen dark hide-overlay>
       <v-container fill-height fluid>
         <v-btn icon dark v-on:click="$emit('toggleModal')">
           <v-icon>mdi-close</v-icon>

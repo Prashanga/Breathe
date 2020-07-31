@@ -415,7 +415,7 @@ export default {
                 v-model="ratioOfSeconds"
                 @change="clearAllTimers"
                 prepend-icon="mdi-cog"
-                hint="Delay"
+                hint="Duration of each round"
                 class="ratio-setting ma-0"
                 color="primaryBlack"
                 persistent-hint
@@ -427,13 +427,10 @@ export default {
                     <v-list-item-content>
                       <v-list-item-title class="white--text"
                         ><p>
-                          Higher value will
+                          Increase or
                         </p>
                         <p>
-                          increase the duration
-                        </p>
-                        <p>
-                          of each round
+                          decrease duration
                         </p>
                       </v-list-item-title>
                     </v-list-item-content>
