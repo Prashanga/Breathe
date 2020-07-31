@@ -52,15 +52,12 @@ export default {
           :key="link.text"
           router
           :to="link.route"
+          class="text-body-1 white--text"
           exact
         >
           {{ link.text }}
         </v-btn>
       </v-toolbar-items>
-
-      <v-btn class="mr-12" v-if="!isMobile" icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer

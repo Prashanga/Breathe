@@ -17,6 +17,10 @@ export default {
         <a href="http://code.sydney/" target="blank">Code.Sydney's</a>
         Vue Joint Learning Program
       </p>
+      <p>
+        The app is developed using Vue and Vuetify. The app looks better on
+        Mobile devices, although, the desktop version isn't to bad either
+      </p>
       <p>Developed By:</p>
       <p class="mt-n3">
         <v-icon color="primaryBlack">mdi-linkedin</v-icon>
