@@ -50,7 +50,8 @@ export default {
         end: false
       },
       hidden: '',
-      visibilityChange: ''
+      visibilityChange: '',
+      playInBackground: false
     }
   },
   mounted: function() {
@@ -154,6 +155,23 @@ export default {
         location.reload()
       }
     },
+    addRemBackPlay() {
+      if (this.playInBackground) {
+        console.log('removing eventlistener')
+        document.removeEventListener(
+          this.visibilityChange,
+          this.handleVisibilityChange,
+          false
+        )
+      } else {
+        console.log('adding eventlistener')
+        document.addEventListener(
+          this.visibilityChange,
+          this.handleVisibilityChange,
+          false
+        )
+      }
+    },
     selectBreathingTechnique(title) {
       this.clearAllTimers()
       this.currentTechnique = title
@@ -255,6 +273,7 @@ export default {
       this.count = this.numberOfRepetition
 
       this.countdownTimer()
+
       setTimeout(function() {
         that.breathingTimer()
       }, 4000)
@@ -430,6 +449,11 @@ export default {
                     color="primaryBlack"
                     persistent-hint
                   ></v-switch>
+                  <v-checkbox
+                    v-model="playInBackground"
+                    :label="playInBackground ? 'on' : 'off'"
+                    @change="addRemBackPlay"
+                  ></v-checkbox>
                 </v-row>
               </v-col>
             </v-row>
