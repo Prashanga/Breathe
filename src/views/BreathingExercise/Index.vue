@@ -437,7 +437,7 @@ export default {
                   {{ usage }}
                 </v-chip>
               </v-col>
-              <v-col cols="12" class="ma-0">
+              <v-col cols="12" class="ma-0 mt-2">
                 <v-row align="center" justify="center" class="ma-0 pa-0">
                   <v-col cols="5" class="ma-0 pa-0">
                     <v-switch
@@ -454,9 +454,9 @@ export default {
                       v-model="playInBackground"
                       :label="playInBackground ? 'on' : 'off'"
                       @change="addRemBackPlay"
-                      class="ratio-setting"
+                      class="ratio-setting ma-0"
                       color="primaryBlack"
-                      hint="Play in background"
+                      hint="Background Play"
                       persistent-hint=""
                     ></v-checkbox>
                   </v-col>
