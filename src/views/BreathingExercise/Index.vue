@@ -58,6 +58,27 @@ export default {
     this.sustainMusic = new Audio(sustainMp3)
     this.endMusic = new Audio(endMusic)
     this.$store.dispatch('setTitle', this.currentTechnique)
+
+    // Set the name of the hidden property and the change event for visibility
+    let hidden, visibilityChange
+    if (typeof document.hidden !== 'undefined') {
+      // Opera 12.10 and Firefox 18 and later support
+      hidden = 'hidden'
+      visibilityChange = 'visibilitychange'
+    } else if (typeof document.msHidden !== 'undefined') {
+      hidden = 'msHidden'
+      visibilityChange = 'msvisibilitychange'
+    } else if (typeof document.webkitHidden !== 'undefined') {
+      hidden = 'webkitHidden'
+      visibilityChange = 'webkitvisibilitychange'
+    }
+
+    function handleVisibilityChange() {
+      if (document[hidden]) {
+        location.reload()
+      }
+    }
+    document.addEventListener(visibilityChange, handleVisibilityChange, false)
   },
   beforeDestroy: function() {
     this.clearAllTimers()
@@ -330,6 +351,7 @@ export default {
                 elevation="3"
                 :absolute="!$vuetify.breakpoint.mdAndUp"
                 :fixed="$vuetify.breakpoint.mdAndUp"
+                ref="playButton"
                 bottom
                 x-large
                 color="primaryBlack"
