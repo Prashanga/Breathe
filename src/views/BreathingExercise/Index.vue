@@ -48,7 +48,9 @@ export default {
         exhale: false,
         sustain: false,
         end: false
-      }
+      },
+      hidden: '',
+      visibilityChange: ''
     }
   },
   mounted: function() {
@@ -60,25 +62,24 @@ export default {
     this.$store.dispatch('setTitle', this.currentTechnique)
 
     // Set the name of the hidden property and the change event for visibility
-    let hidden, visibilityChange
+    // let hidden, visibilityChange
     if (typeof document.hidden !== 'undefined') {
       // Opera 12.10 and Firefox 18 and later support
-      hidden = 'hidden'
-      visibilityChange = 'visibilitychange'
+      this.hidden = 'hidden'
+      this.visibilityChange = 'visibilitychange'
     } else if (typeof document.msHidden !== 'undefined') {
-      hidden = 'msHidden'
-      visibilityChange = 'msvisibilitychange'
+      this.hidden = 'msHidden'
+      this.visibilityChange = 'msvisibilitychange'
     } else if (typeof document.webkitHidden !== 'undefined') {
-      hidden = 'webkitHidden'
-      visibilityChange = 'webkitvisibilitychange'
+      this.hidden = 'webkitHidden'
+      this.visibilityChange = 'webkitvisibilitychange'
     }
 
-    function handleVisibilityChange() {
-      if (document[hidden]) {
-        location.reload()
-      }
-    }
-    document.addEventListener(visibilityChange, handleVisibilityChange, false)
+    document.addEventListener(
+      this.visibilityChange,
+      this.handleVisibilityChange,
+      false
+    )
   },
   beforeDestroy: function() {
     this.clearAllTimers()
@@ -148,6 +149,11 @@ export default {
     }
   },
   methods: {
+    handleVisibilityChange() {
+      if (document[this.hidden]) {
+        location.reload()
+      }
+    },
     selectBreathingTechnique(title) {
       this.clearAllTimers()
       this.currentTechnique = title
