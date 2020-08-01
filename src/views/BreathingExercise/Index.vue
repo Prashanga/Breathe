@@ -157,14 +157,12 @@ export default {
     },
     addRemBackPlay() {
       if (this.playInBackground) {
-        console.log('removing eventlistener')
         document.removeEventListener(
           this.visibilityChange,
           this.handleVisibilityChange,
           false
         )
       } else {
-        console.log('adding eventlistener')
         document.addEventListener(
           this.visibilityChange,
           this.handleVisibilityChange,
@@ -425,7 +423,7 @@ export default {
       <v-col cols="12" md="4" :class="controlsCol" class="ma-0">
         <v-row class="pt-6 ma-0" align="center" justify="start">
           <!--           Left Column            -->
-          <v-col cols="6">
+          <v-col cols="7">
             <v-row align="center" justify="center">
               <v-col cols="12" class="ma-0 pa-0">
                 <v-chip
@@ -441,19 +439,27 @@ export default {
               </v-col>
               <v-col cols="12" class="ma-0">
                 <v-row align="center" justify="center" class="ma-0 pa-0">
-                  <v-switch
-                    v-model="music"
-                    :label="music ? 'on' : 'off'"
-                    hint="Music"
-                    class="ratio-setting ma-0"
-                    color="primaryBlack"
-                    persistent-hint
-                  ></v-switch>
-                  <v-checkbox
-                    v-model="playInBackground"
-                    :label="playInBackground ? 'on' : 'off'"
-                    @change="addRemBackPlay"
-                  ></v-checkbox>
+                  <v-col cols="5" class="ma-0 pa-0">
+                    <v-switch
+                      v-model="music"
+                      :label="music ? 'on' : 'off'"
+                      hint="Music"
+                      class="ratio-setting ma-0"
+                      color="primaryBlack"
+                      persistent-hint
+                    ></v-switch>
+                  </v-col>
+                  <v-col cols="7" class="ma-0 pa-0">
+                    <v-checkbox
+                      v-model="playInBackground"
+                      :label="playInBackground ? 'on' : 'off'"
+                      @change="addRemBackPlay"
+                      class="ratio-setting"
+                      color="primaryBlack"
+                      hint="Play in background"
+                      persistent-hint=""
+                    ></v-checkbox>
+                  </v-col>
                 </v-row>
               </v-col>
             </v-row>
