@@ -469,7 +469,7 @@ export default {
           <v-col cols="5" class="pl-8 pt-0">
             <v-row justify="start" align="center" class="mb-2">
               <v-select
-                :items="[0.5, 1, 2, 4, 5]"
+                :items="[0.5, 1, 2, 3, 4, 5]"
                 v-model="ratioOfSeconds"
                 @change="clearAllTimers"
                 prepend-icon="mdi-cog"
