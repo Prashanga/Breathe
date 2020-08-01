@@ -151,7 +151,11 @@ export default {
   },
   methods: {
     handleVisibilityChange() {
-      if (document[this.hidden]) {
+      if (
+        document[this.hidden] &&
+        (window.location.href === 'http://localhost:8080/' ||
+          window.location.href === 'https://thebreather.netlify.app/')
+      ) {
         location.reload()
       }
     },
