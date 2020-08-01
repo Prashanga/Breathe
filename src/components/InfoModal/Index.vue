@@ -33,6 +33,10 @@ export default {
             the exercise lasts. The default being 1.
           </p>
           <p>
+            Check the box for Background Play if you want the exercise to run in
+            the background when you switch tabs or minimise the browser
+          </p>
+          <p>
             Total rounds setting lets you select the number of rounds the
             exercise will run for. Default is 10 rounds
           </p>
