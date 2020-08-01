@@ -38,7 +38,8 @@ export default {
     </div>
     <div class="text-body-1 mt-8">
       <p>
-        Disclaimer: This app is not meant to be used for medical purposes
+        Disclaimer: This app is only a personal project showcase and not a
+        commercial application
       </p>
     </div>
   </div>

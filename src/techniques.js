@@ -17,7 +17,7 @@ export const breathingTechniques = [
   },
   {
     id: 3,
-    title: 'Inhale-Exhale',
+    title: 'Inhale - Exhale',
     breathCycle: [4, 0, 4, 0],
     numberOfRepetition: 10,
     duration: null,
