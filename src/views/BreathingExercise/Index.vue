@@ -62,8 +62,6 @@ export default {
     this.endMusic = new Audio(endMusic)
     this.$store.dispatch('setTitle', this.currentTechnique)
 
-    // Set the name of the hidden property and the change event for visibility
-    // let hidden, visibilityChange
     if (typeof document.hidden !== 'undefined') {
       // Opera 12.10 and Firefox 18 and later support
       this.hidden = 'hidden'
@@ -82,8 +80,14 @@ export default {
       false
     )
   },
+
   beforeDestroy: function() {
     this.clearAllTimers()
+    document.removeEventListener(
+      this.visibilityChange,
+      this.handleVisibilityChange,
+      false
+    )
   },
 
   computed: {
@@ -195,7 +199,7 @@ export default {
       this.createFreshIsplayed()
       let id = window.setTimeout(function() {}, 0)
       while (id--) {
-        window.clearTimeout(id) // will do nothing if no timeout with id is present
+        window.clearTimeout(id)
       }
     },
     breathingTimer() {
