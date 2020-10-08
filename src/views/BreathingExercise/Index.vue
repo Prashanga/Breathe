@@ -282,7 +282,7 @@ export default {
 
       setTimeout(function() {
         that.breathingTimer()
-      }, 4000)
+      }, 4300)
     },
     playAudio(audio, current) {
       if (audio.paused) audio.currentTime = 0
@@ -567,22 +567,18 @@ export default {
 
 @keyframes inhaleCircle {
   from {
-    width: 0px;
-    height: 0px;
+    transform: scale(0);
   }
   to {
-    width: 25vh;
-    height: 25vh;
+    transform: scale(1);
   }
 }
 @keyframes exhaleCircle {
   from {
-    width: 25vh;
-    height: 25vh;
+    transform: scale(1);
   }
   to {
-    width: 0px;
-    height: 0px;
+    transform: scale(0);
   }
 }
 </style>

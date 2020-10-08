@@ -38,8 +38,7 @@ export default {
     </div>
     <div class="text-body-1 mt-8">
       <p>
-        Disclaimer: This app is only a personal project showcase and is not a
-        commercial application
+        Disclaimer: This app is only a personal project showcase.
       </p>
     </div>
   </div>
